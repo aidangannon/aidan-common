@@ -14,7 +14,6 @@
     <ItemGroup>
       <ProjectReference Include="..\Aidan.Common.AspNetCoreExtensions\Aidan.Common.AspNetCoreExtensions.csproj" />
       <ProjectReference Include="..\Aidan.Common.Utils\Aidan.Common.Utils.csproj" />
-      <ProjectReference Include="..\Pinfluencer.SocialWrangler.API\Pinfluencer.SocialWrangler.API.csproj" />
     </ItemGroup>
     
 </Project>
