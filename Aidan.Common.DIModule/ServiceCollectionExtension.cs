@@ -3,10 +3,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Aidan.Common.Configuration;
 using Aidan.Common.Core;
 using Aidan.Common.Core.Enum;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
-using Pinfluencer.SocialWrangler.Crosscutting.Web;
+using Aidan.Common.Utils;
+using Aidan.Common.Web;
 
-namespace Pinfluencer.SocialWrangler.Crosscutting.DIModule
+namespace Aidan.Common.DIModule
 {
     public static class ServiceCollectionExtension
     {

@@ -3,7 +3,7 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
-namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions
+namespace Aidan.Common.NUnit
 {
     public static class FakeConfiguration
     {

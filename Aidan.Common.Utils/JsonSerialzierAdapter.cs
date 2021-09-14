@@ -1,7 +1,7 @@
 ﻿using Aidan.Common.Core.Interfaces.Contract;
 using Newtonsoft.Json;
 
-namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
+namespace Aidan.Common.Utils
 {
     public class JsonSerialzierAdapter : ISerializer
     {

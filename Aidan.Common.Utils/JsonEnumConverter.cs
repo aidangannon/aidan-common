@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
+namespace Aidan.Common.Utils
 {
     [ Obsolete ]
     public class JsonEnumConverter<T> : StringEnumConverter where T : Enum

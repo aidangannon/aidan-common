@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using Aidan.Common.Core.Enum;
 
-namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
+namespace Aidan.Common.Utils
 {
     public static class RegionExtensions
     {

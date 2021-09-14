@@ -1,4 +1,4 @@
-﻿namespace Pinfluencer.SocialWrangler.Crosscutting.Web
+﻿namespace Aidan.Common.Web
 {
     public static class WebUtilsInitializer
     {

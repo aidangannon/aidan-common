@@ -7,7 +7,7 @@ using Aidan.Common.Core.Attributes;
 using Aidan.Common.Core.Enum;
 using Aidan.Common.Core.Interfaces.Contract;
 
-namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
+namespace Aidan.Common.Utils
 {
     public class CountryGetter : ICountryGetter
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Aidan.Common.Core.Interfaces.Contract;
 
-namespace Pinfluencer.SocialWrangler.Crosscutting.Web
+namespace Aidan.Common.Web
 {
     public class ApiClient : ApiClientBase, IApiClient
     {

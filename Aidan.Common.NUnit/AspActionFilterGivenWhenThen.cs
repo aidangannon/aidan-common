@@ -8,9 +8,9 @@ using Microsoft.Extensions.Primitives;
 using NSubstitute;
 using Aidan.Common.AspNetCoreExtensions;
 using Aidan.Common.Core.Interfaces.Contract;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
+using Aidan.Common.Utils;
 
-namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions
+namespace Aidan.Common.NUnit
 {
     public abstract class AspActionFilterGivenWhenThen<TFilter> : GivenWhenThen<TFilter> where TFilter : IActionFilter
     {

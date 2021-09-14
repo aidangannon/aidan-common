@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Aidan.Common.Core.Interfaces.Contract;
 
-namespace Pinfluencer.SocialWrangler.Crosscutting.Web
+namespace Aidan.Common.Web
 {
     public class HttpClientAdapter : IHttpClient
     {

@@ -1,7 +1,7 @@
 ﻿using Aidan.Common.Core.Interfaces.Contract;
 using Microsoft.Extensions.Configuration;
 
-namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
+namespace Aidan.Common.Utils
 {
     public class ConfigurationAdapter : IConfigurationAdapter
     {

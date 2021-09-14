@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
+namespace Aidan.Common.Utils
 {
     public static class EnumExtensions
     {

@@ -1,11 +1,10 @@
 ﻿using System;
 using Aidan.Common.Core.Interfaces.Contract;
 using NSubstitute;
-using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
 
-namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
+namespace Aidan.Common.NUnit
 {
-    public class PinfluencerGivenWhenThen<T> : GivenWhenThen<T> where T : class
+    public class CommonGivenWhenThen<T> : GivenWhenThen<T> where T : class
     {
         protected ILoggerAdapter<T> MockLogger;
 

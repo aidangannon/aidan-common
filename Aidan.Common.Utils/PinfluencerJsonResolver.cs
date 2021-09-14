@@ -3,7 +3,7 @@ using System.Linq;
 using Aidan.Common.Core.Interfaces.Contract;
 using Newtonsoft.Json.Serialization;
 
-namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
+namespace Aidan.Common.Utils
 {
     public class PinfluencerJsonResolver : DefaultContractResolver, IContractResolverAdapter
     {

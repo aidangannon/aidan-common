@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
-using Aidan.Common.Core;
+﻿using Aidan.Common.Core;
 using Aidan.Common.Core.Enum;
+using NUnit.Framework;
 
-namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
+namespace Aidan.Common.NUnit
 {
     public static class ResultAssert
     {

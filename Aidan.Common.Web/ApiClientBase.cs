@@ -3,7 +3,7 @@ using System.Net;
 using Aidan.Common.Core.Interfaces.Contract;
 using Aidan.Common.Core.Interfaces.Excluded;
 
-namespace Pinfluencer.SocialWrangler.Crosscutting.Web
+namespace Aidan.Common.Web
 {
     public abstract class ApiClientBase : IGenericApiClient
     {

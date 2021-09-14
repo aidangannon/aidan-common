@@ -1,7 +1,7 @@
 ﻿using Aidan.Common.Core.Interfaces.Contract;
 using Microsoft.Extensions.Logging;
 
-namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
+namespace Aidan.Common.Utils
 {
     public class LoggerAdapter<T> : ILoggerAdapter<T> where T : class
     {

@@ -4,15 +4,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aidan.Common.AspNetCoreExte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aidan.Common.CodeContracts", "Aidan.Common.CodeContracts\Aidan.Common.CodeContracts.csproj", "{60BD0EF2-2131-4591-A84E-E5B29D5D129B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.Crosscutting.DIModule", "Pinfluencer.SocialWrangler.Crosscutting.DIModule\Pinfluencer.SocialWrangler.Crosscutting.DIModule.csproj", "{BF0AA214-CB2E-4BF9-B159-E4E67E196984}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aidan.Common.DIModule", "Aidan.Common.DIModule\Aidan.Common.DIModule.csproj", "{BF0AA214-CB2E-4BF9-B159-E4E67E196984}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions", "Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions\Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions.csproj", "{C96BD78E-AAC1-48D7-8830-2E9DC2A031E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aidan.Common.NUnit", "Aidan.Common.NUnit\Aidan.Common.NUnit.csproj", "{C96BD78E-AAC1-48D7-8830-2E9DC2A031E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions", "Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions\Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions.csproj", "{9ECBDA60-829B-44F4-B464-2B3A3ECE8EDC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aidan.Common.Utils", "Aidan.Common.Utils\Aidan.Common.Utils.csproj", "{813FE672-B42B-4E54-88BD-E6D3981DFFEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.Crosscutting.Utils", "Pinfluencer.SocialWrangler.Crosscutting.Utils\Pinfluencer.SocialWrangler.Crosscutting.Utils.csproj", "{813FE672-B42B-4E54-88BD-E6D3981DFFEA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.Crosscutting.Web", "Pinfluencer.SocialWrangler.Crosscutting.Web\Pinfluencer.SocialWrangler.Crosscutting.Web.csproj", "{96CB2C5C-B418-4FE0-A8C7-428CBBA65E62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aidan.Common.Web", "Aidan.Common.Web\Aidan.Common.Web.csproj", "{96CB2C5C-B418-4FE0-A8C7-428CBBA65E62}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aidan.Common.Core", "Aidan.Common.Core\Aidan.Common.Core.csproj", "{81C7412E-B6EE-44AE-A43D-A52C3BD2566D}"
 EndProject
@@ -40,10 +38,6 @@ Global
 		{C96BD78E-AAC1-48D7-8830-2E9DC2A031E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C96BD78E-AAC1-48D7-8830-2E9DC2A031E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C96BD78E-AAC1-48D7-8830-2E9DC2A031E5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9ECBDA60-829B-44F4-B464-2B3A3ECE8EDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9ECBDA60-829B-44F4-B464-2B3A3ECE8EDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9ECBDA60-829B-44F4-B464-2B3A3ECE8EDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9ECBDA60-829B-44F4-B464-2B3A3ECE8EDC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{813FE672-B42B-4E54-88BD-E6D3981DFFEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{813FE672-B42B-4E54-88BD-E6D3981DFFEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{813FE672-B42B-4E54-88BD-E6D3981DFFEA}.Release|Any CPU.ActiveCfg = Release|Any CPU

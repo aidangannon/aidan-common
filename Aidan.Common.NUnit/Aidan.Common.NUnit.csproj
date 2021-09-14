@@ -13,8 +13,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Aidan.Common.AspNetCoreExtensions\Aidan.Common.AspNetCoreExtensions.csproj" />
+      <ProjectReference Include="..\Aidan.Common.Utils\Aidan.Common.Utils.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.API\Pinfluencer.SocialWrangler.API.csproj" />
-      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.Utils\Pinfluencer.SocialWrangler.Crosscutting.Utils.csproj" />
     </ItemGroup>
     
 </Project>

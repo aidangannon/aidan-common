@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions
+namespace Aidan.Common.NUnit
 {
     //TODO: add middleware test class
     public abstract class GivenWhenThen<T>
