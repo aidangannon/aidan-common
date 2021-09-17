@@ -307,7 +307,7 @@ namespace Aidan.Common.Core.Enum
         [ Country( "Vanuatu" ) ] VU = 240,
 
         [ Country( "Venezuela" ) ] VE = 241,
-        [ Country( "Viet Nam" ) ] VN = 242,
+        [ Country( "Vietnam" ) ] VN = 242,
 
         [ Country( "Virgin Islands" ) ] VG = 243,
 
