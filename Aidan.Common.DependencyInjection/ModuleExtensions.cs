@@ -149,8 +149,8 @@ namespace Aidan.Common.DependencyInjection
             Action [ ] initializers,
             string rootNamespace )
         {
-            var types = GetTypes( applicationLayer.ToString( ), rootNamespace );
-            Bind( serviceCollection, types , applicationLayer.ToString( ), rootNamespace );
+            var types = GetTypes( rootNamespace, applicationLayer.ToString( ) );
+            Bind( serviceCollection, types , rootNamespace, applicationLayer.ToString( ) );
             if( applicationLayer == ApplicationLayerEnum.UI )
             {
                 RegisterViewModels( serviceCollection, types );
