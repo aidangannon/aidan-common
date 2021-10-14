@@ -12,10 +12,10 @@ namespace Aidan.Common.DependencyInjection
 {
     public static class ModuleExtensions
     {
-        private static IServiceCollection Bind( IServiceCollection services, Type [ ] types, string layer, string rootNamespace )
+        private static IServiceCollection Bind( IServiceCollection services, Type [ ] types, string rootNamespace,  string layer = "" )
         {
-            RegisterServices( services, GetServiceTypes( GetInterfaces( types, layer, rootNamespace ), types ) );
-            RegisterFactories( services, GetFactories( GetInterfaces( types, layer, rootNamespace ) ) );
+            RegisterServices( services, GetServiceTypes( GetInterfaces( types, rootNamespace, layer ), types ) );
+            RegisterFactories( services, GetFactories( GetInterfaces( types , rootNamespace, layer ) ) );
             return services;
         }
 
@@ -63,7 +63,7 @@ namespace Aidan.Common.DependencyInjection
             var service = types
                 .First( x =>
                     x.GetInterfaces( ).Any( type =>
-                        $"{type.Namespace}.{type.Name}" == $"{iInterface.Namespace}.{iInterface.Name}" ) &&
+                        $"{type.FullName}.{type.Name}" == $"{iInterface.FullName}.{iInterface.Name}" ) &&
                     x.IsClass );
             try
             {
@@ -107,14 +107,17 @@ namespace Aidan.Common.DependencyInjection
             return factories;
         }
 
-        private static Type [ ] GetInterfaces( Type [ ] types, string layer, string rootNamespace )
+        private static Type [ ] GetInterfaces( Type [ ] types, string rootNamespace, string layer = "" )
         {
             var interfaces = types
                 .Where( type =>
                 {
                     try
                     {
-                        return type.Namespace.Contains( $"{rootNamespace}.{layer}.{ApplicationConstants.ContractNamespace}" ) &&
+                        var namespaceStr = layer != ""
+                            ? $"{rootNamespace}.{layer}.{ApplicationConstants.ContractNamespace}"
+                            : $"{rootNamespace}.{ApplicationConstants.ContractNamespace}";
+                        return type.FullName.Contains( namespaceStr ) &&
                                type.IsInterface;
                     }
                     catch( Exception ) { return false; }
@@ -123,7 +126,7 @@ namespace Aidan.Common.DependencyInjection
             return interfaces;
         }
 
-        private static Type [ ] GetTypes( string layer, string rootNamespace )
+        private static Type [ ] GetTypes( string rootNamespace, string layer = "" )
         {
             var types = AppDomain
                 .CurrentDomain
@@ -131,7 +134,10 @@ namespace Aidan.Common.DependencyInjection
                 .SelectMany( x => x.GetTypes( ) )
                 .Where( x =>
                 {
-                    try { return x.Namespace.Contains( $"{rootNamespace}.{layer}" ); }
+                    var namespaceStr = layer != ""
+                        ? $"{rootNamespace}.{layer}"
+                        : $"{rootNamespace}";
+                    try { return x.FullName.Contains( namespaceStr ); }
                     catch( Exception ) { return false; }
                 } )
                 .ToArray( );
@@ -149,6 +155,16 @@ namespace Aidan.Common.DependencyInjection
             {
                 RegisterViewModels( serviceCollection, types );
             }
+
+            return serviceCollection;
+        }
+
+        public static IServiceCollection BindServices( this IServiceCollection serviceCollection,
+            Action [ ] initializers,
+            string rootNamespace )
+        {
+            var types = GetTypes( rootNamespace );
+            Bind( serviceCollection, types,  rootNamespace );
 
             return serviceCollection;
         }
