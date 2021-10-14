@@ -6,7 +6,7 @@ namespace Aidan.Common.Core.Enum
     {
         [ Description( "Domain Layer" ) ] DL,
         [ Description( "Data Access Layer" ) ] DAL,
-        [ Description( "Crosscutting Layer" ) ] Crosscutting,
+        [ Description( "Crosscutting Layer" ) ] Utils,
         [ Description( "Rest Api Layer" ) ] API,
         [ Description( "UI Layer" ) ] UI
     }
