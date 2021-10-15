@@ -61,7 +61,7 @@ class Build : NukeBuild
                 .EnableNoRestore( ) );
         });
 
-    Target Pack => _ => _
+    Target Push => _ => _
         .Executes( ( ) =>
         {
             foreach( var library in Libraries )
