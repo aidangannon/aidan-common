@@ -63,7 +63,7 @@ namespace Aidan.Common.DependencyInjection
             var service = types
                 .First( x =>
                     x.GetInterfaces( ).Any( type =>
-                        $"{type.FullName}.{type.Name}" == $"{iInterface.FullName}.{iInterface.Name}" ) &&
+                        $"{type.FullName}.{type.Name}" == $"{iInterface.FullName}.{iInterface.Name}" || $"{type.Namespace}.{type.Name}" == $"{iInterface.Namespace}.{iInterface.Name}" ) &&
                     x.IsClass );
             try
             {
@@ -117,7 +117,7 @@ namespace Aidan.Common.DependencyInjection
                         var namespaceStr = layer != ""
                             ? $"{rootNamespace}.{layer}.{ApplicationConstants.ContractNamespace}"
                             : $"{rootNamespace}.{ApplicationConstants.ContractNamespace}";
-                        return type.FullName.Contains( namespaceStr ) &&
+                        return type.FullName.Contains( namespaceStr ) || type.Namespace.Contains( namespaceStr ) &&
                                type.IsInterface;
                     }
                     catch( Exception ) { return false; }
@@ -137,7 +137,7 @@ namespace Aidan.Common.DependencyInjection
                     var namespaceStr = layer != ""
                         ? $"{rootNamespace}.{layer}"
                         : $"{rootNamespace}";
-                    try { return x.FullName.Contains( namespaceStr ); }
+                    try { return x.FullName.Contains( namespaceStr ) || x.Namespace.Contains( namespaceStr ); }
                     catch( Exception ) { return false; }
                 } )
                 .ToArray( );

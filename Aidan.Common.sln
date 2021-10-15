@@ -6,12 +6,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aidan.Common.Core", "Aidan.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aidan.Common.DependencyInjection", "Aidan.Common.DependencyInjection\Aidan.Common.DependencyInjection.csproj", "{F0BC92B6-2241-4CBE-A0EA-E6AAFE2851DA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aidan.Common.Build", "Aidan.Common.Build\Aidan.Common.Build.csproj", "{552DF908-5A5B-44FF-BFAE-65F68FE26462}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{552DF908-5A5B-44FF-BFAE-65F68FE26462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{552DF908-5A5B-44FF-BFAE-65F68FE26462}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{813FE672-B42B-4E54-88BD-E6D3981DFFEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{813FE672-B42B-4E54-88BD-E6D3981DFFEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{813FE672-B42B-4E54-88BD-E6D3981DFFEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
