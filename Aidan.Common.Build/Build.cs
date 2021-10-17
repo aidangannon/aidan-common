@@ -90,11 +90,11 @@ class Build : NukeBuild
 
     private bool HasChanged( string libName )
     {
-        var process = ProcessTasks.StartProcess( "git", "status .", $"{RootDirectory}\\{libName}" );
+        var process = ProcessTasks.StartProcess( "git", $"show --name-only {RootDirectory}\\{libName}" );
         process.WaitForExit(  );
         return process
             .Output
-            .Count > 5;
+            .Count > 0;
     }
     
     private string GetLatestVersion( string libName )

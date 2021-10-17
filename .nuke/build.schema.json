@@ -73,7 +73,7 @@
             "enum": [
               "Clean",
               "Compile",
-              "Pack",
+              "Push",
               "Restore"
             ]
           }
@@ -90,7 +90,7 @@
             "enum": [
               "Clean",
               "Compile",
-              "Pack",
+              "Push",
               "Restore"
             ]
           }
