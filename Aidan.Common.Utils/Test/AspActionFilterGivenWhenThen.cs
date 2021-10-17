@@ -43,7 +43,7 @@ namespace Aidan.Common.Utils.Test
 
         protected override void Given( )
         {
-            Serializer = new JsonSerialzierAdapter( new GenericJsonResolver( ) );
+            Serializer = new JsonSnakeCaseSerialzier( new JsonSnakeCaseResolver( new JsonSnakeCaseFieldNameParser( ) ) );
             _mockHttpContext = Substitute.For<HttpContext>( );
             _mockHttpRequest = Substitute.For<HttpRequest>( );
             MvcAdapter = new MvcAdapter( Serializer );
