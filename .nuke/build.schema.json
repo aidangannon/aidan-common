@@ -6,6 +6,9 @@
     "build": {
       "type": "object",
       "properties": {
+        "ChangesFile": {
+          "type": "string"
+        },
         "Configuration": {
           "type": "string",
           "description": "Configuration to build - Default is 'Debug' (local) or 'Release' (server)",
@@ -74,7 +77,8 @@
               "Clean",
               "Compile",
               "Push",
-              "Restore"
+              "Restore",
+              "UpdateLibraryChanges"
             ]
           }
         },
@@ -91,7 +95,8 @@
               "Clean",
               "Compile",
               "Push",
-              "Restore"
+              "Restore",
+              "UpdateLibraryChanges"
             ]
           }
         },
