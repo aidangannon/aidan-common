@@ -3,9 +3,9 @@ using Aidan.Common.Core.Interfaces.Contract;
 
 namespace Aidan.Common.Utils.Web
 {
-    public class ApiClient : ApiClientBase, IApiClient
+    public class ApiClient<T> : ApiClientBase<T>, IApiClient<T> where T : ISerializer
     {
-        public ApiClient( Uri uri, string token, ISerializer serializer, IHttpClient httpClient ) : base( uri, token,
+        public ApiClient( Uri uri, string token, T serializer, IHttpClient httpClient ) : base( uri, token,
             serializer, httpClient )
         {
         }

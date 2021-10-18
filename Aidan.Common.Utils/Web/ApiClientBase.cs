@@ -5,18 +5,18 @@ using Aidan.Common.Core.Interfaces.Excluded;
 
 namespace Aidan.Common.Utils.Web
 {
-    public abstract class ApiClientBase : IGenericApiClient
+    public abstract class ApiClientBase<TSerializerType> : IGenericApiClient<TSerializerType> where TSerializerType : ISerializer
     {
         protected readonly IHttpClient HttpClient;
-        protected readonly ISerializer Serializer;
+        protected readonly TSerializerType Serializer;
 
-        protected ApiClientBase( IHttpClient httpClient, ISerializer serializer )
+        protected ApiClientBase( IHttpClient httpClient, TSerializerType serializer )
         {
             HttpClient = httpClient;
             Serializer = serializer;
         }
 
-        protected ApiClientBase( Uri uri, string token, ISerializer serializer, IHttpClient httpClient ) : this(
+        protected ApiClientBase( Uri uri, string token, TSerializerType serializer, IHttpClient httpClient ) : this(
             httpClient, serializer )
         {
             SetBaseUrl( uri );

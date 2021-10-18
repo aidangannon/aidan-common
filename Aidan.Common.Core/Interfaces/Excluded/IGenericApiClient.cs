@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Net;
+using Aidan.Common.Core.Interfaces.Contract;
 
 namespace Aidan.Common.Core.Interfaces.Excluded
 {
-    public interface IGenericApiClient
+    public interface IGenericApiClient<T> where T : ISerializer
     {
         void SetBaseUrl( Uri uri );
         void SetBearerToken( string token );
