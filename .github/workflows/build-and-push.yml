@@ -8,6 +8,7 @@ jobs:
     env:
       NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }}
       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      GITHUB_BEFORE_COMMIT: ${{ github.event.before }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup .NET
@@ -18,11 +19,7 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
       - name: Install Nuke
         run: dotnet tool install Nuke.GlobalTool --global
       - name: Nuget push
-        run: nuke -Target Push
+        run: nuke -Target Push -LocalRun false

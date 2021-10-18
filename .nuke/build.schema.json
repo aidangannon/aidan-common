@@ -45,6 +45,9 @@
             "VSCode"
           ]
         },
+        "LocalRun": {
+          "type": "boolean"
+        },
         "NoLogo": {
           "type": "boolean",
           "description": "Disables displaying the NUKE logo"

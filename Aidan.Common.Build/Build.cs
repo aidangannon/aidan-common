@@ -28,9 +28,11 @@ class Build : NukeBuild
 
     static readonly string NugetSource;
     static readonly string NugetApiKey;
+    static readonly string SecondToLastCommit;
 
-    [Solution] readonly Solution Solution;
+    [ Solution ] readonly Solution Solution;
     [ Parameter ] readonly string ChangesFile;
+    [ Parameter ] bool LocalRun = true;
 
     string ChangesAbsoluteFilePath => $"{RootDirectory}\\{RootNamespace}.Build\\{ChangesFile}";
 
@@ -38,6 +40,7 @@ class Build : NukeBuild
     {
         NugetSource = Environment.GetEnvironmentVariable( "NUGET_SOURCE" );
         NugetApiKey = Environment.GetEnvironmentVariable( "NUGET_API_KEY" );
+        SecondToLastCommit = Environment.GetEnvironmentVariable( "GITHUB_BEFORE_COMMIT" );
         Libraries = new [ ]
         {
             $"{RootNamespace}.Core",
@@ -75,10 +78,19 @@ class Build : NukeBuild
             {
                 var version = GetLatestVersion( library );
                 var lastUpdatedCommit = version.LastUpdatedCommit;
-                var secondToLastCommit = GitTasks
-                    .Git( "rev-parse HEAD~" )
-                    .ToArray(  )[ 0 ]
-                    .Text;
+                string secondToLastCommit = "";
+                if( LocalRun )
+                {
+                    secondToLastCommit = GitTasks
+                        .Git( "rev-parse HEAD~" )
+                        .ToArray( )[ 0 ]
+                        .Text;
+                }
+                else
+                {
+                    secondToLastCommit = SecondToLastCommit;
+                }
+
                 if( lastUpdatedCommit != secondToLastCommit )
                 {
                     throw new Exception( "you must run the command 'configure-git' to add the git hooks for publishing" );
