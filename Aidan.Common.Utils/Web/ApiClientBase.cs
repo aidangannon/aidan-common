@@ -5,7 +5,7 @@ using Aidan.Common.Core.Interfaces.Excluded;
 
 namespace Aidan.Common.Utils.Web
 {
-    public abstract class ApiClientBase<TSerializerType> : IGenericApiClient<TSerializerType> where TSerializerType : ISerializer
+    public abstract class ApiClientBase<TSerializerType> : IGenericApiClient where TSerializerType : ISerializer
     {
         protected readonly IHttpClient HttpClient;
         protected readonly TSerializerType Serializer;
