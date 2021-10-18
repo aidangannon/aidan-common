@@ -2,7 +2,7 @@
 
 namespace Aidan.Common.Core.Interfaces.Contract
 {
-    public interface IApiClient : IGenericApiClient
+    public interface IApiClient<T> : IGenericApiClient where T : ISerializer
     {
     }
 }
