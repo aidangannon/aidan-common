@@ -4,7 +4,7 @@ namespace Aidan.Common.Utils.Utils
 {
     public abstract class BaseJsonSerializer
     {
-        protected JsonSerializerSettings Settings;
+        protected readonly JsonSerializerSettings Settings;
 
         protected BaseJsonSerializer()
         {
