@@ -18,9 +18,7 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build
-      - name: Install Nuke
-        run: dotnet tool install Nuke.GlobalTool --global
-      - name: Install Dotnet Search
-        run: dotnet tool install --global dotnet-search
+      - name: Init
+        run: init
       - name: Nuget push
         run: nuke -Target Push

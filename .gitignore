@@ -6,3 +6,5 @@ riderModule.iml
 /.idea
 
 *Nuget.Config
+
+.nuke/temp
