@@ -18,6 +18,8 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build
+      - name: get the sha
+        run: echo "$GITHUB_CONTEXT"| jq '.event.commits[].id' | tail -2 | head -1 |sed 's/\"//g'
       - name: Install Nuke
         run: dotnet tool install Nuke.GlobalTool --global
       - name: Nuget push
