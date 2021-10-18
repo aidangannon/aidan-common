@@ -76,7 +76,7 @@ class Build : NukeBuild
                 var version = GetLatestVersion( library );
                 var lastUpdatedCommit = version.LastUpdatedCommit;
                 var secondToLastCommit = GitTasks
-                    .Git( "rev-parse @~" )
+                    .Git( "rev-parse HEAD~" )
                     .ToArray(  )[ 0 ]
                     .Text;
                 if( lastUpdatedCommit != secondToLastCommit )
