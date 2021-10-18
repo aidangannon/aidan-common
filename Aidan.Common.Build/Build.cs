@@ -10,6 +10,7 @@ using Nuke.Common.Execution;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
 using Nuke.Common.Tools.DotNet;
+using Nuke.Common.Tools.Git;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 [CheckBuildProjectConfigurations]
@@ -72,9 +73,18 @@ class Build : NukeBuild
         {
             foreach( var library in Libraries )
             {
+                var version = GetLatestVersion( library );
+                var lastUpdatedCommit = version.LastUpdatedCommit;
+                var secondToLastCommit = GitTasks
+                    .Git( "rev-parse @~" )
+                    .ToArray(  )[ 0 ]
+                    .Text;
+                if( lastUpdatedCommit != secondToLastCommit )
+                {
+                    throw new Exception( "you must run the command 'configure-git' to add the git hooks for publishing" );
+                }
                 if( HasChanged( library ) )
                 {
-                    var version = GetLatestVersion( library );
                     var newVersion = $"{version.MajorVersion}.{version.MinorVersion}.{version.PatchVersion}";
                     DotNetPack( s => s
                         .SetProject( Solution.GetProject( library ) )
@@ -110,6 +120,7 @@ class Build : NukeBuild
         {
             lib.Version.PatchVersion++;
         }
+        lib.Version.LastUpdatedCommit = GitTasks.GitCurrentCommit( );
     }
 
     private bool HasChangedGit( string libName )
