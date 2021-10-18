@@ -19,6 +19,6 @@ jobs:
       - name: Build
         run: dotnet build
       - name: Init
-        run: init
+        run: init.cmd
       - name: Nuget push
         run: nuke -Target Push

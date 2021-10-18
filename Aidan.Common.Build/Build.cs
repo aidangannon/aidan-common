@@ -90,10 +90,10 @@ class Build : NukeBuild
                         .SetProject( Solution.GetProject( library ) )
                         .SetConfiguration( Configuration.Release )
                         .SetVersion( newVersion ) );
-                    //DotNetNuGetPush( s => s
-                    //    .SetSource( NugetSource )
-                    //    .SetApiKey( NugetApiKey )
-                    //    .SetTargetPath( $"{RootDirectory}\\{library}\\bin\\Release\\{library}.{newVersion}.nupkg" ) );
+                    DotNetNuGetPush( s => s
+                        .SetSource( NugetSource )
+                        .SetApiKey( NugetApiKey )
+                        .SetTargetPath( $"{RootDirectory}\\{library}\\bin\\Release\\{library}.{newVersion}.nupkg" ) );
                 }
             }
         } );
