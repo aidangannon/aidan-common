@@ -26,10 +26,18 @@ namespace Aidan.Common.Utils.Web
                         .Services
                         .BuildServiceProvider( )
                         .GetService<JsonNamingPolicy>( ) );
-                case CaseEnum.PascalAndCamel:
+                case CaseEnum.Pascal:
                     mvcBuilder.Services
                         .AddTransient<ISerializer, JsonCamelAndPascalCaseSerializer>( );
                     return mvcBuilder;
+                case CaseEnum.Camel:
+                    mvcBuilder.Services
+                        .AddTransient<ISerializer, JsonCamelAndPascalCaseSerializer>( );
+                    return mvcBuilder
+                        .AddJsonOptions( x => x
+                            .JsonSerializerOptions
+                            .PropertyNamingPolicy = JsonNamingPolicy
+                                .CamelCase );
                 default:
                     throw new ArgumentException( "invalid case" );
             }

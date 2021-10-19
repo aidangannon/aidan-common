@@ -3,6 +3,7 @@
     public enum CaseEnum
     {
         Snake,
-        PascalAndCamel
+        Pascal,
+        Camel
     }
 }
