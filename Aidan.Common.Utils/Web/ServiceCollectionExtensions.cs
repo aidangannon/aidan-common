@@ -1,14 +1,38 @@
-﻿using System.Text.Json;
+﻿using System;
+using System.Text.Json;
+using Aidan.Common.Core.Enum;
+using Aidan.Common.Core.Interfaces.Contract;
+using Aidan.Common.Utils.Utils;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Aidan.Common.Utils.Web
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection BindJsonNamingPolicy( this IServiceCollection serviceCollection ) =>
-            serviceCollection.AddTransient<JsonNamingPolicy, SnakeCaseJsonNamingPolicy>( );
-
-        public static JsonNamingPolicy ResolveJsonNamingPolicy( this IServiceCollection serviceCollection ) =>
+        private static JsonNamingPolicy ResolveJsonNamingPolicy( this IServiceCollection serviceCollection ) =>
             serviceCollection.BuildServiceProvider().GetService<JsonNamingPolicy>( );
+
+        public static IMvcBuilder BindJsonOptions( this IMvcBuilder mvcBuilder, CaseEnum caseEnum )
+        {
+            switch( caseEnum )
+            {
+                case CaseEnum.Snake:
+                    mvcBuilder.Services
+                        .AddTransient<JsonNamingPolicy, SnakeCaseJsonNamingPolicy>( )
+                        .AddTransient<ISerializer, JsonSnakeCaseSerialzier>( );
+                    return mvcBuilder.AddJsonOptions( x => x
+                        .JsonSerializerOptions
+                        .PropertyNamingPolicy = mvcBuilder
+                        .Services
+                        .BuildServiceProvider( )
+                        .GetService<JsonNamingPolicy>( ) );
+                case CaseEnum.PascalAndCamel:
+                    mvcBuilder.Services
+                        .AddTransient<ISerializer, JsonCamelAndPascalCaseSerializer>( );
+                    return mvcBuilder;
+                default:
+                    throw new ArgumentException( "invalid case" );
+            }
+        }
     }
 }
