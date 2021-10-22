@@ -3,5 +3,6 @@
     public interface IFileAdapter
     {
         Result Exists( string path );
+        ObjectResult<string> GetFileExtension( string filePath );
     }
 }
