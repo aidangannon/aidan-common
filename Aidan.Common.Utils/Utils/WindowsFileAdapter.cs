@@ -23,5 +23,31 @@ namespace Aidan.Common.Utils.Utils
                 return new ObjectResult<string> { Msg = e.Message, Status = OperationResultEnum.Failed };
             }
         }
+
+        public ObjectResult<string> ReadFile( string path )
+        {
+            try
+            {
+                var content = new StreamReader( path ).ReadToEnd( );
+                return new ObjectResult<string> { Status = OperationResultEnum.Success, Value = content };
+            }
+            catch( Exception e )
+            {
+                return new ObjectResult<string> { Status = OperationResultEnum.Failed, Msg = e.Message };
+            }
+        }
+
+        public Result WriteFile( string path, string content )
+        {
+            try
+            {
+                new StreamWriter( path ).Write( content );
+                return Result.Success( );
+            }
+            catch( Exception e )
+            {
+                return Result.Error( e.Message );
+            }
+        }
     }
 }
