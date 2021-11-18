@@ -6,5 +6,6 @@
         ObjectResult<string> GetFileExtension( string filePath );
         ObjectResult<string> ReadFile( string path );
         Result WriteFile( string path, string content );
+        ObjectResult<string> GetDirectoryName( string filePath );
     }
 }

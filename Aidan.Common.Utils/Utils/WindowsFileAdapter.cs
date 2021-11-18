@@ -11,6 +11,24 @@ namespace Aidan.Common.Utils.Utils
         public Result Exists( string path ) =>
             File.Exists( path ) ? Result.Success( ) : Result.Error( $"file at {path} was not found" ) ;
 
+        public ObjectResult<string> GetDirectoryName( string filePath )
+        {
+            var result = Path.GetDirectoryName( filePath );
+            if( string.IsNullOrEmpty( result ) )
+            {
+                return new ObjectResult<string>
+                {
+                    Msg = $"{filePath} not found",
+                    Status = OperationResultEnum.Failed
+                };
+            }
+            return new ObjectResult<string>
+            {
+                Value = result,
+                Status = OperationResultEnum.Success
+            };
+        }
+        
         public ObjectResult<string> GetFileExtension( string filePath )
         {
             try

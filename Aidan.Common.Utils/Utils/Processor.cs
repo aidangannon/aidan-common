@@ -38,7 +38,7 @@ namespace Aidan.Common.Utils.Utils
             }
             else
             {
-                return Result.Error( $"there was an error in running execution :P {processObj.StandardOutput.ReadToEnd( )}" );
+                return Result.Error( "there was an error in running execution :P" );
             }
         }
     }
