@@ -46,7 +46,11 @@ namespace Aidan.Common.Utils.Utils
         {
             try
             {
-                var content = new StreamReader( path ).ReadToEnd( );
+                var content = "";
+                using( var reader = new StreamReader( path ) )
+                {
+                    content = reader.ReadToEnd( );
+                }
                 return new ObjectResult<string> { Status = OperationResultEnum.Success, Value = content };
             }
             catch( Exception e )
@@ -59,7 +63,10 @@ namespace Aidan.Common.Utils.Utils
         {
             try
             {
-                new StreamWriter( path ).Write( content );
+                using( var writer = new StreamWriter( path ) )
+                {
+                    writer.Write( content );
+                }
                 return Result.Success( );
             }
             catch( Exception e )
