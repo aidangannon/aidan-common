@@ -32,7 +32,7 @@ namespace Aidan.Common.Utils.Utils
                 return Result.Error( ex.Message );
             }
 
-            if( processObj.ExitCode == 1 )
+            if( processObj.ExitCode == 0 )
             {
                 return Result.Success( );
             }
