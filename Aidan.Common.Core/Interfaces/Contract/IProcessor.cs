@@ -2,6 +2,6 @@
 {
     public interface IProcessor
     {
-        Result RunAndWait( string process, string args, string workDir );
+        Result RunAndWait( string process, string args );
     }
 }

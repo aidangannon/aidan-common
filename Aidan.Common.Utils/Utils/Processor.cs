@@ -8,15 +8,14 @@ namespace Aidan.Common.Utils.Utils
 {
     public class Processor : IProcessor
     {
-        public Result RunAndWait( string process, string args, string workDir )
+        public Result RunAndWait( string process, string args )
         {
             var processObj = new Process();
             var startInfo = new ProcessStartInfo
             {
                 WindowStyle = ProcessWindowStyle.Hidden,
                 FileName = process,
-                Arguments = args,
-                WorkingDirectory = workDir
+                Arguments = args
             };
             processObj.StartInfo = startInfo;
             try
