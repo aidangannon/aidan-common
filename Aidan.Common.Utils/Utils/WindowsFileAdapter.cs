@@ -28,7 +28,31 @@ namespace Aidan.Common.Utils.Utils
                 Status = OperationResultEnum.Success
             };
         }
-        
+
+        public ObjectResult<string> GetCurrentDirectory( )
+        {
+            try
+            {
+                var dir = Directory.GetCurrentDirectory( );
+                return new ObjectResult<string>
+                {
+                    Status = OperationResultEnum.Success,
+                    Value = dir
+                };
+            }
+            catch( Exception e ) when(
+                e is UnauthorizedAccessException
+                || e is NotSupportedException
+            )
+            {
+                return new ObjectResult<string>
+                {
+                    Status = OperationResultEnum.Failed,
+                    Msg = e.Message
+                };
+            }
+        }
+
         public ObjectResult<string> GetFileExtension( string filePath )
         {
             try
