@@ -41,7 +41,7 @@ namespace Aidan.Common.DependencyInjection
         {
             var facClsBuilder = new FactoryClassBuilder( );
             var allTypes = assemblies.SelectMany( t => new [ ] { t.ImplementationType, t.ServiceType } );
-            var factoryMethods = factory.GetMethods( ).Where( m => m.Name == "Factory" );
+            var factoryMethods = factory.GetMethods( );
 
             foreach( var factoryMethod in factoryMethods )
             {

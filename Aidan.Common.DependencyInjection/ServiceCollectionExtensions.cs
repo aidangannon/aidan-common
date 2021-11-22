@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Aidan.Common.DependencyInjection
@@ -14,6 +15,11 @@ namespace Aidan.Common.DependencyInjection
             {
                 var facType = IlFactoryTypeCreator.CreateType( facClsBuilder, factory );
                 var factoryGeneratedService = FactoryTypeActivator.Activate( sp, facType );
+                var service = sc.First( x => x.ImplementationType == factoryGeneratedService.GetType( ) );
+                if( service.Lifetime == ServiceLifetime.Scoped || service.Lifetime == ServiceLifetime.Singleton )
+                {
+                    sc.Replace( x => factoryGeneratedService, service.ServiceType );
+                }
                 return factoryGeneratedService;
             }, serviceLifetime ) );
 
