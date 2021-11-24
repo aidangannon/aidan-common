@@ -1,6 +1,8 @@
-﻿namespace Aidan.Common.Core.Interfaces.Contract
+﻿using Aidan.Common.Core.Interfaces.Excluded;
+
+namespace Aidan.Common.Core.Interfaces.Contract
 {
-    public interface ICsvAdapterFactory
+    public interface ICsvAdapterFactory : IFactory
     {
         public ICsvAdapter Factory( string filePath );
     }
