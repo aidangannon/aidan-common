@@ -74,7 +74,30 @@ namespace Aidan.Common.DependencyInjection
             }
             catch( Exception )
             {
-                // service does not have custom scope
+                try
+                {
+                    var serviceAttribute = iInterface
+                        .GetInterfaces( )
+                        .Where( x =>
+                        {
+                            try
+                            {
+                                x.GetCustomAttributes<ServiceAttribute>( );
+                                return true;
+                            }
+                            catch( Exception )
+                            {
+                                return false;
+                            }
+                        } )
+                        .Select( x => x.GetCustomAttributes<ServiceAttribute>( ).First( ) )
+                        .First( );
+                    lifetime = GetServiceLifetime( serviceAttribute, lifetime );
+                }
+                catch( Exception )
+                {
+                    // no custom scope
+                }
             }
 
             serviceTypes
