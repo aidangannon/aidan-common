@@ -15,11 +15,11 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.1.x
-      - name: Restore
-        run: dotnet restore
-      - name: Build
-        run: dotnet build
       - name: Install Nuke
         run: dotnet tool install Nuke.GlobalTool --global
+      - name: Build
+        run: nuke -Target Compile
+      - name: Test
+        run: nuke -Target Test
       - name: Nuget push
         run: nuke -Target Push -LocalRun false

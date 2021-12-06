@@ -81,6 +81,7 @@
               "Compile",
               "Push",
               "Restore",
+              "Test",
               "UpdateLibraryChanges"
             ]
           }
@@ -99,6 +100,7 @@
               "Compile",
               "Push",
               "Restore",
+              "Test",
               "UpdateLibraryChanges"
             ]
           }

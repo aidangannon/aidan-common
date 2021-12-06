@@ -50,26 +50,26 @@ class Build : NukeBuild
     }
 
     Target Clean => _ => _
-        .Before(Restore)
-        .Executes(() =>
+        .Before( Restore )
+        .Executes( ( ) =>
         {
-        });
+        } );
 
     Target Restore => _ => _
-        .Executes(() =>
+        .Executes( ( ) =>
         {
-            DotNetRestore(s => s
-                .SetProjectFile(Solution));
-        });
+            DotNetRestore( s => s
+                .SetProjectFile( Solution ) );
+        } );
 
     Target Compile => _ => _
-        .DependsOn(Restore)
-        .Executes(() =>
+        .DependsOn( Restore )
+        .Executes( ( ) =>
         {
-            DotNetBuild(s => s
-                .SetProjectFile(Solution)
+            DotNetBuild( s => s
+                .SetProjectFile( Solution )
                 .EnableNoRestore( ) );
-        });
+        } );
 
     Target Push => _ => _
         .Executes( ( ) =>
@@ -120,6 +120,9 @@ class Build : NukeBuild
             }
             WriteLibraries( libs );
         } );
+
+    Target Test => _ => _
+        .Executes( ( ) => DotNetTest( settings => settings.SetVerbosity( DotNetVerbosity.Normal ) ) );
 
     private void WriteLibrary(
         Dictionary<string, LibDto> currentFile,

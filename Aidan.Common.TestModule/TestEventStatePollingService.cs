@@ -3,9 +3,15 @@ using Aidan.Common.Utils.EventDriven;
 
 namespace Aidan.Common.TestModule;
 
-public class TestEventStatePollingService : BasePollingStateService<int>
+public class TestEventStatePollingService : BasePollingStateService<int>, ITestEventStatePollingService
 {
-    public TestEventStatePollingService( ITestEventState eventState ) : base( eventState, () => eventState.Value + 1 )
+    public static int NumOfCalls { set; get; }
+
+    public TestEventStatePollingService( ITestEventState eventState ) : base( eventState, () =>
+    {
+        NumOfCalls++;
+        return eventState.Value + 1;
+    }, 1 )
     {
     }
 }

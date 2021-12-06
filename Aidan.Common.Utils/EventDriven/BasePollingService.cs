@@ -19,11 +19,16 @@ namespace Aidan.Common.Utils.EventDriven
             _interval = interval;
             _cancellationTokenSource = new CancellationTokenSource( );
             _token = _cancellationTokenSource.Token;
-            var listener = Task.Factory.StartNew( Poll, _token, TaskCreationOptions.LongRunning, TaskScheduler.Default );
         }
 
         public void Cancel( ) => _cancellationTokenSource.Cancel( );
-        public Result Initialize( ) => Result.Success( );
+        public void DoWork( ) => _work( );
+
+        public Result Initialize( )
+        {
+            Task.Factory.StartNew( Poll, _token, TaskCreationOptions.LongRunning, TaskScheduler.Default );
+            return Result.Success( );
+        }
 
         private void Poll( )
         {

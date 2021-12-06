@@ -5,8 +5,8 @@ namespace Aidan.Common.Utils.EventDriven
 {
     public abstract class BasePollingStateService<TStateType> : BasePollingService
     {
-        protected BasePollingStateService( IEventState<TStateType> eventState, Func<TStateType> workToBeDone ) : base(
-            ( ) => eventState.Value = workToBeDone( ), 1000 )
+        protected BasePollingStateService( IEventState<TStateType> eventState, Func<TStateType> workToBeDone, int interval=1000 ) : base(
+            ( ) => eventState.Value = workToBeDone( ), interval )
         {
         }
     }
