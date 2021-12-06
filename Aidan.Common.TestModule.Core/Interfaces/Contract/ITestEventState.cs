@@ -2,7 +2,6 @@
 
 namespace Aidan.Common.TestModule.Core.Interfaces.Contract
 {
-
     public interface ITestEventState : IEventState<int>
     {
     }
