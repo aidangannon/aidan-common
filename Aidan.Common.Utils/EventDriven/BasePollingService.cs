@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Aidan.Common.Core;
 using Aidan.Common.Core.Interfaces.Excluded;
 
 namespace Aidan.Common.Utils.EventDriven
@@ -27,5 +28,6 @@ namespace Aidan.Common.Utils.EventDriven
         }
 
         public void Cancel( ) => _cancellationTokenSource.Cancel( );
+        public Result Initialize( ) => Result.Success( );
     }
 }
