@@ -12,6 +12,8 @@ namespace Aidan.Common.Utils.EventDriven
             set
             {
                 _value = value;
+                //TODO: replace with proper logging
+                Console.Write( $"value changed to {value}" );
                 ValueChangedEvent?.Invoke( );
             }
         }
