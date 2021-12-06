@@ -1,8 +1,8 @@
-﻿namespace Aidan.Common.TestModule;
-
-public static class TestModuleInitializer
+﻿namespace Aidan.Common.TestModule
 {
-    public static void Initialize( )
+
+    public static class TestModuleInitializer
     {
+        public static void Initialize( ) { }
     }
 }
