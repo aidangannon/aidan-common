@@ -4,17 +4,17 @@
     "Version": {
       "MajorVersion": 1,
       "MinorVersion": 0,
-      "PatchVersion": 26,
-      "LastUpdatedCommit": "864d649c6654fcad95e2a4342dce06a2f17cf1a2"
+      "PatchVersion": 27,
+      "LastUpdatedCommit": "035f231ebd259605e550de07313062bacffdf7ef"
     }
   },
   "Aidan.Common.Utils": {
-    "Changed": true,
+    "Changed": false,
     "Version": {
       "MajorVersion": 1,
       "MinorVersion": 0,
       "PatchVersion": 24,
-      "LastUpdatedCommit": "864d649c6654fcad95e2a4342dce06a2f17cf1a2"
+      "LastUpdatedCommit": "035f231ebd259605e550de07313062bacffdf7ef"
     }
   },
   "Aidan.Common.DependencyInjection": {
@@ -23,7 +23,7 @@
       "MajorVersion": 1,
       "MinorVersion": 0,
       "PatchVersion": 6,
-      "LastUpdatedCommit": "864d649c6654fcad95e2a4342dce06a2f17cf1a2"
+      "LastUpdatedCommit": "035f231ebd259605e550de07313062bacffdf7ef"
     }
   }
 }
