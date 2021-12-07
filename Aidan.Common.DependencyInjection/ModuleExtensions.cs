@@ -38,6 +38,15 @@ namespace Aidan.Common.DependencyInjection
         {
             foreach( var ((contract, scope), implementation) in serviceTypes )
                 services.Add( new ServiceDescriptor( contract, implementation, scope ) );
+            foreach( var serviceType in serviceTypes )
+            {
+                var inheritedInterfaces = serviceType.Item1.contract.GetInterfaces( );
+                if( inheritedInterfaces.Any( x => x == typeof( IInitialisable ) ) )
+                {
+                    services.Add( new ServiceDescriptor( typeof( IInitialisable ),
+                        x => x.GetService( serviceType.Item1.contract ), serviceType.Item1.scope ) );
+                }
+            }
         }
 
         private static List<((Type contract, ServiceLifetime scope), Type implementation)> GetServiceTypes(

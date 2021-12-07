@@ -10,6 +10,8 @@ namespace Aidan.Common.Tests.Integration.Bootstrap
 {
     public abstract class Given_A_Module_Is_Binded : GivenWhenThen<IServiceCollection>
     {
+        protected ServiceProvider ServiceProvider;
+
         protected override void Given( )
         {
             SUT = new ServiceCollection( )
@@ -18,6 +20,7 @@ namespace Aidan.Common.Tests.Integration.Bootstrap
                     TestModuleInitializer.Initialize,
                     TestModuleCoreInitializer.Initialize
                 }, "Aidan.Common.TestModule" );
+            ServiceProvider = SUT.BuildServiceProvider( );
         }
 
         [ Test ]
