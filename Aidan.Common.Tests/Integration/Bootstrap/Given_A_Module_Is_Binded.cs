@@ -1,7 +1,9 @@
 ﻿using System;
+using Aidan.Common.Core;
 using Aidan.Common.DependencyInjection;
 using Aidan.Common.TestModule;
 using Aidan.Common.TestModule.Core;
+using Aidan.Common.Utils;
 using Aidan.Common.Utils.Test;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
@@ -15,11 +17,16 @@ namespace Aidan.Common.Tests.Integration.Bootstrap
         protected override void Given( )
         {
             SUT = new ServiceCollection( )
-                .BindServices( new Action []
+                .BindServices( new Action[]
                 {
                     TestModuleInitializer.Initialize,
-                    TestModuleCoreInitializer.Initialize
-                }, "Aidan.Common.TestModule" );
+                    TestModuleCoreInitializer.Initialize,
+                }, "Aidan.Common.TestModule" )
+                .BindServices( new Action[]
+                {
+                    CommonInitializer.Initialize,
+                    CommonUtilsInitializer.Initialize
+                }, "Aidan.Common" );
             ServiceProvider = SUT.BuildServiceProvider( );
         }
 

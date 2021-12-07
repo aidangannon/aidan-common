@@ -1,6 +1,8 @@
-﻿using Aidan.Common.TestModule;
+﻿using Aidan.Common.Core.Interfaces.Contract;
+using Aidan.Common.TestModule;
 using Aidan.Common.TestModule.Core.Interfaces.Contract;
 using Aidan.Common.Utils.Test;
+using NSubstitute;
 
 namespace Aidan.Common.Tests.Integration.TestEventStatePollingServiceTests
 {
@@ -13,7 +15,7 @@ namespace Aidan.Common.Tests.Integration.TestEventStatePollingServiceTests
         protected override void Given( )
         {
             EventState = new TestEventState( );
-            SUT = new TestEventStatePollingService( EventState );
+            SUT = new TestEventStatePollingService( EventState, Substitute.For<ITaskService>( ) );
             EventState.ValueChangedEvent += ( ) => HandlerCalled++;
         }
     }

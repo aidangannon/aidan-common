@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Aidan.Common.Core;
+using Aidan.Common.Core.Interfaces.Contract;
 using Aidan.Common.Core.Interfaces.Excluded;
 
 namespace Aidan.Common.Utils.EventDriven
@@ -10,13 +11,15 @@ namespace Aidan.Common.Utils.EventDriven
     {
         private readonly Action _work;
         private readonly int _interval;
+        private readonly ITaskService _taskService;
         private readonly CancellationTokenSource _cancellationTokenSource;
         private readonly CancellationToken _token;
 
-        protected BasePollingService( Action work, int interval )
+        protected BasePollingService( Action work, int interval, ITaskService taskService )
         {
             _work = work;
             _interval = interval;
+            _taskService = taskService;
             _cancellationTokenSource = new CancellationTokenSource( );
             _token = _cancellationTokenSource.Token;
         }
@@ -26,7 +29,7 @@ namespace Aidan.Common.Utils.EventDriven
 
         public Result Initialize( )
         {
-            Task.Factory.StartNew( Poll, _token, TaskCreationOptions.LongRunning, TaskScheduler.Default );
+            _taskService.StartNew( Poll, _token, TaskCreationOptions.LongRunning, TaskScheduler.Default );
             return Result.Success( );
         }
 
