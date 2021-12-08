@@ -1,5 +1,6 @@
 ﻿using System;
 using Aidan.Common.Core;
+using Aidan.Common.Core.Interfaces.Excluded;
 using Aidan.Common.DependencyInjection;
 using Aidan.Common.TestModule;
 using Aidan.Common.TestModule.Core;
@@ -28,6 +29,10 @@ namespace Aidan.Common.Tests.Integration.Bootstrap
                     CommonUtilsInitializer.Initialize
                 }, "Aidan.Common" );
             ServiceProvider = SUT.BuildServiceProvider( );
+            foreach( var initialisable in ServiceProvider.GetServices<IInitialisable>( ) )
+            {
+                initialisable.Initialize( );
+            }
         }
 
         [ Test ]
