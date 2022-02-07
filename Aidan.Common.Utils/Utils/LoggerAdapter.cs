@@ -7,10 +7,12 @@ namespace Aidan.Common.Utils.Utils
     {
         private readonly ILogger _logger;
 
-        public LoggerAdapter( ILogger<T> logger ) { _logger = logger; }
+        public LoggerAdapter( ILogger<T> logger ) => _logger = logger;
 
-        public void LogInfo( string message ) { _logger.LogInformation( message ); }
+        public void LogInfo( string message ) => _logger.LogInformation( message );
 
-        public void LogError( string message ) { _logger.LogError( message ); }
+        public void LogError( string message ) => _logger.LogError( message );
+
+        public void LogDebug( string message ) => _logger.LogDebug( message );
     }
 }
