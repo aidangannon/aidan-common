@@ -71,6 +71,9 @@ class Build : NukeBuild
         .Executes( ( ) =>
         {
             var currentLib = Libraries[ Library ];
+            var libs = ReadLibraries( );
+            WriteLibrary( libs, currentLib );
+            WriteLibraries( libs );
             var version = GetLatestVersion( currentLib );    
             var newVersion = $"{version.MajorVersion}.{version.MinorVersion}.{version.PatchVersion}";
             DotNetPack( s => s
