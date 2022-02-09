@@ -6,6 +6,3 @@
 # it wants to stop the commit.
 #
 # To enable this hook, rename this file to "pre-commit".
-
-Nuke -Target UpdateLibraryChanges
-git add Aidan.Common.Build/changes.json

@@ -1,16 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.Execution;
 using Nuke.Common.ProjectModel;
-using Nuke.Common.Tooling;
 using Nuke.Common.Tools.DotNet;
-using Nuke.Common.Tools.Git;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 [CheckBuildProjectConfigurations]
@@ -24,7 +20,7 @@ class Build : NukeBuild
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
-    static readonly string[] Libraries;
+    static readonly Dictionary<string, string> Libraries;
 
     static readonly string NugetSource;
     static readonly string NugetApiKey;
@@ -32,7 +28,7 @@ class Build : NukeBuild
 
     [ Solution ] readonly Solution Solution;
     [ Parameter ] readonly string ChangesFile;
-    [ Parameter ] bool LocalRun = true;
+    [ Parameter ] readonly string Library;
 
     string ChangesAbsoluteFilePath => $"{RootDirectory}\\{RootNamespace}.Build\\{ChangesFile}";
 
@@ -41,11 +37,11 @@ class Build : NukeBuild
         NugetSource = Environment.GetEnvironmentVariable( "NUGET_SOURCE" );
         NugetApiKey = Environment.GetEnvironmentVariable( "NUGET_API_KEY" );
         SecondToLastCommit = Environment.GetEnvironmentVariable( "GITHUB_BEFORE_COMMIT" );
-        Libraries = new [ ]
+        Libraries = new Dictionary<string, string>
         {
-            $"{RootNamespace}.Core",
-            $"{RootNamespace}.Utils",
-            $"{RootNamespace}.DependencyInjection"
+            { "core", $"{RootNamespace}.Core" },
+            { "utils", $"{RootNamespace}.Utils" },
+            { "di", $"{RootNamespace}.DependencyInjection" }
         };
     }
 
@@ -74,51 +70,17 @@ class Build : NukeBuild
     Target Push => _ => _
         .Executes( ( ) =>
         {
-            foreach( var library in Libraries )
-            {
-                var version = GetLatestVersion( library );
-                var lastUpdatedCommit = version.LastUpdatedCommit;
-                string secondToLastCommit = "";
-                if( LocalRun )
-                {
-                    secondToLastCommit = GitTasks
-                        .Git( "rev-parse HEAD~" )
-                        .ToArray( )[ 0 ]
-                        .Text;
-                }
-                else
-                {
-                    secondToLastCommit = SecondToLastCommit;
-                }
-
-                if( lastUpdatedCommit != secondToLastCommit )
-                {
-                    throw new Exception( "you must run the command 'configure-git' to add the git hooks for publishing" );
-                }
-                if( HasChanged( library ) )
-                {
-                    var newVersion = $"{version.MajorVersion}.{version.MinorVersion}.{version.PatchVersion}";
-                    DotNetPack( s => s
-                        .SetProject( Solution.GetProject( library ) )
-                        .SetConfiguration( Configuration.Release )
-                        .SetVersion( newVersion ) );
-                    DotNetNuGetPush( s => s
-                        .SetSource( NugetSource )
-                        .SetApiKey( NugetApiKey )
-                        .SetTargetPath( $"{RootDirectory}\\{library}\\bin\\Release\\{library}.{newVersion}.nupkg" ) );
-                }
-            }
-        } );
-
-    Target UpdateLibraryChanges => _ => _
-        .Executes( ( ) =>
-        {
-            var libs = ReadLibraries( );
-            foreach( var library in Libraries )
-            {
-                WriteLibrary( libs, library );
-            }
-            WriteLibraries( libs );
+            var currentLib = Libraries[ Library ];
+            var version = GetLatestVersion( currentLib );    
+            var newVersion = $"{version.MajorVersion}.{version.MinorVersion}.{version.PatchVersion}";
+            DotNetPack( s => s
+                .SetProject( Solution.GetProject( currentLib ) )
+                .SetConfiguration( Configuration.Release )
+                .SetVersion( newVersion ) );
+            DotNetNuGetPush( s => s
+                .SetSource( NugetSource )
+                .SetApiKey( NugetApiKey )
+                .SetTargetPath( $"{RootDirectory}\\{currentLib}\\bin\\Release\\{currentLib}.{newVersion}.nupkg" ) );
         } );
 
     Target Test => _ => _
@@ -129,30 +91,9 @@ class Build : NukeBuild
         string libName )
     {
         var lib = currentFile[ libName ];
-        var libHasChanged = HasChangedGit( libName );
-        lib.Changed = libHasChanged;
-        if( libHasChanged )
-        {
-            lib.Version.PatchVersion++;
-        }
-        lib.Version.LastUpdatedCommit = GitTasks.GitCurrentCommit( );
-    }
-
-    private bool HasChangedGit( string libName )
-    {
-        var process = ProcessTasks.StartProcess( "git", "status .", $"{RootDirectory}\\{libName}" );
-        process.WaitForExit(  );
-        return process
-            .Output
-            .Count > 5;
+        lib.Version.PatchVersion++;
     }
     
-    private bool HasChanged( string libName )
-    {
-        var items = ReadLibraries( );
-        return items[ libName ].Changed;
-    }
-
     private VersionDto GetLatestVersion( string libName )
     {
         var items = ReadLibraries( );
@@ -172,17 +113,4 @@ class Build : NukeBuild
         Console.Write( json );
         File.WriteAllText( ChangesAbsoluteFilePath, json );
     }
-
-    private string GetLatestVersionDotnetSearch( string libName )
-    {
-        var process = ProcessTasks.StartProcess( "dotnet", $"search {libName}" );
-        process.WaitForExit(  );
-        return new Regex( @"[0-9].[0-9].[0-9]" )
-            .Match( process
-                .Output
-                .Select( x => x.Text )
-                .ToArray(  )[ 2 ] )
-            .ToString( );;
-    }
-
 }

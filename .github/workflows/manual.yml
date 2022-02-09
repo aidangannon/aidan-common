@@ -1,0 +1,27 @@
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'nuget publish, choose from the following => [ core, di, utils ]'
+        required: true
+jobs:
+  build_and_test:
+    runs-on: windows-latest
+    env:
+      NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }}
+      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      GITHUB_BEFORE_COMMIT: ${{ github.event.before }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core 3.1
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+      - name: Install Nuke
+        run: dotnet tool install Nuke.GlobalTool --global
+      - name: Build
+        run: nuke -Target Compile
+      - name: Test
+        run: nuke -Target Test
+      - name: Nuget push
+        run: nuke -Target Push -Library ${{ github.event.inputs.target }}
