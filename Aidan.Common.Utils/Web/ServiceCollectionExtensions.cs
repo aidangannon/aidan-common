@@ -28,11 +28,11 @@ namespace Aidan.Common.Utils.Web
                         .GetService<JsonNamingPolicy>( ) );
                 case CaseEnum.Pascal:
                     mvcBuilder.Services
-                        .AddTransient<ISerializer, JsonCamelAndPascalCaseSerializer>( );
+                        .AddTransient<ISerializer, JsonPascalCaseSerializer>( );
                     return mvcBuilder;
                 case CaseEnum.Camel:
                     mvcBuilder.Services
-                        .AddTransient<ISerializer, JsonCamelAndPascalCaseSerializer>( );
+                        .AddTransient<ISerializer, JsonCamelCaseSerializer>( );
                     return mvcBuilder
                         .AddJsonOptions( x => x
                             .JsonSerializerOptions

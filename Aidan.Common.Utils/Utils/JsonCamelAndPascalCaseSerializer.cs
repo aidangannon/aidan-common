@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Aidan.Common.Utils.Utils
 {
-    public class JsonCamelAndPascalCaseSerializer : BaseJsonSerializer, IJsonCamelAndPascalCaseSerializer
+    public class JsonCamelCaseSerializer : BaseJsonSerializer, IJsonCamelAndPascalCaseSerializer
     {
         public string Serialize( object content ) { return JsonConvert.SerializeObject( content, Settings ); }
 
