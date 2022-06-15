@@ -36,8 +36,7 @@ namespace Aidan.Common.Utils.Web
                     return mvcBuilder
                         .AddJsonOptions( x => x
                             .JsonSerializerOptions
-                            .PropertyNamingPolicy = JsonNamingPolicy
-                                .CamelCase );
+                            .PropertyNamingPolicy = JsonNamingPolicy.CamelCase );
                 default:
                     throw new ArgumentException( "invalid case" );
             }

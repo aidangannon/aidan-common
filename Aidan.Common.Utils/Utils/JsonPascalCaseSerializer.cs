@@ -4,7 +4,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace Aidan.Common.Utils.Utils
 {
-    public class JsonPascalCaseSerializer : BaseJsonSerializer, IJsonCamelAndPascalCaseSerializer
+    public class JsonPascalCaseSerializer : BaseJsonSerializer, IJsonPascalCaseSerializer
     {
         public string Serialize( object content )
         {
