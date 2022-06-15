@@ -8,7 +8,7 @@ namespace Aidan.Common.Tests.Unit
     {
         protected override void Given( )
         {
-            SUT = new JsonCamelCaseSerializer( );
+            SUT = new NewtonsoftJsonCamelCaseSerializer( );
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Aidan.Common.Utils.Web
                 case CaseEnum.Snake:
                     mvcBuilder.Services
                         .AddTransient<JsonNamingPolicy, SnakeCaseJsonNamingPolicy>( )
-                        .AddTransient<ISerializer, JsonSnakeCaseSerialzier>( );
+                        .AddTransient<ISerializer, NewtonsoftJsonSnakeCaseSerialzier>( );
                     return mvcBuilder.AddJsonOptions( x => x
                         .JsonSerializerOptions
                         .PropertyNamingPolicy = mvcBuilder
@@ -28,11 +28,11 @@ namespace Aidan.Common.Utils.Web
                         .GetService<JsonNamingPolicy>( ) );
                 case CaseEnum.Pascal:
                     mvcBuilder.Services
-                        .AddTransient<ISerializer, JsonPascalCaseSerializer>( );
+                        .AddTransient<ISerializer, NewtonsoftJsonPascalCaseSerializer>( );
                     return mvcBuilder;
                 case CaseEnum.Camel:
                     mvcBuilder.Services
-                        .AddTransient<ISerializer, JsonCamelCaseSerializer>( );
+                        .AddTransient<ISerializer, NewtonsoftJsonCamelCaseSerializer>( );
                     return mvcBuilder
                         .AddJsonOptions( x => x
                             .JsonSerializerOptions

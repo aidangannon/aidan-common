@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace Aidan.Common.Utils.Utils
 {
-    public class JsonSnakeCaseSerialzier : BaseJsonSerializer, IJsonSnakeCaseSerializer
+    public class NewtonsoftJsonSnakeCaseSerialzier : BaseJsonSerializer, IJsonSnakeCaseSerializer
     {
-        public JsonSnakeCaseSerialzier( IContractResolverAdapter contractResolver ) =>
+        public NewtonsoftJsonSnakeCaseSerialzier( IContractResolverAdapter contractResolver ) =>
             Settings.ContractResolver = contractResolver.Resolver;
 
         public string Serialize( object content ) => JsonConvert.SerializeObject( content, Settings );
